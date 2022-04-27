@@ -1,3 +1,3 @@
-# Bridges VR
+# VR TowerDefense
 
-Ein VR game in dem blöcke aneinander geklebt werden um eine Platform mit einer anderen zu verbinden.
+Jump between your towers and defend the attacs of the enemys
