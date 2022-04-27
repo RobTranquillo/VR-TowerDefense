@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/VR-TowerDefense/Scene_TowerDefense.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/VR-TowerDefense/Environment/Scenes/DefenseAssetBuild.unity
+    guid: d560b739220b0be41ab873d3f8bdc393
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 7b6b5c1f42fd6f34895844065c1c9274,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1548079719978634eb4712ed67d37a0d,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 4b00d884be696b34e8af9ad4a0bc3376,
+      type: 2}
+    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: fa0c1faa209c934428b298ee17d525ea,
+      type: 2}
