@@ -9,21 +9,23 @@ public class TimeBomb : MonoBehaviour
 {
     [Header("General")]
     public float timer = 5f;
+
     public float killRadius = 3f;
-    public int maxDamage = 250;   
+    public int maxDamage = 250;
     public float triggerNewSpawnDistance = 2f;
+
     [Header("FX")]
     public AudioSource audioSource;
+
     public float audioStartDelay;
     public bool pumpingBeforeExplode = true;
     public float pumpingInterval = 1f;
     public GameObject explosionParticleSystemPrefab;
 
-
-    float startTime;
-    Vector3 startPos;
-    bool alreadyTrigged = false;
-    GameObject explosionParticleSystem;
+    private float startTime;
+    private Vector3 startPos;
+    private bool alreadyTrigged = false;
+    private GameObject explosionParticleSystem;
 
     private void OnDisable()
     {
@@ -39,7 +41,7 @@ public class TimeBomb : MonoBehaviour
         explosionParticleSystem = Instantiate(explosionParticleSystemPrefab);
     }
 
-    void Update()
+    private void Update()
     {
         if (!alreadyTrigged)
             TriggerEvent();
@@ -90,15 +92,10 @@ public class TimeBomb : MonoBehaviour
         explosionParticleSystem.SetActive(true);
     }
 
-    void ExplosionDamage(Vector3 center, float radius, int dmg)
-    {        
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-
-        foreach (Collider hitCollider in hitColliders)
-        {
-            if (hitCollider.gameObject.tag != "Enemy")
-                continue;
-            hitCollider.gameObject.GetComponent<Destroyabillity>()?.Hit(dmg);
-        }
+    private void ExplosionDamage(Vector3 center, float radius, int dmg)
+    {
+        Collider[] enemys = Utils.EnemysInRadius(center, radius);
+        foreach (Collider enemy in enemys)
+            enemy.gameObject.GetComponent<Destroyabillity>()?.Hit(dmg);
     }
 }
