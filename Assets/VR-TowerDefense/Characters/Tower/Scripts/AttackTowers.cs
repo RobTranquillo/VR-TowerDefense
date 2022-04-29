@@ -7,40 +7,42 @@ public class AttackTowers : Element
 {
     [Header("Debug")]
     public GameObject targetIndicatorPrefab;
-    GameObject targetIndicator;
 
+    private GameObject targetIndicator;
 
     [Header("Movement")]
     public float setNewTargetDelay = 1f;
+
     public float stoppingDistance = 2f;
 
     [Header("Ballistic Weapon")]
     public GameObject bullet;
+
     public float firingDelay = 0.5f;
     public Transform bulletSpawnPoint;
 
-    NavMeshAgent agent;
-    AttackSlot[] targets;
-    AttackSlot targetAttackSlot;
-    Vector3 targetPos;
-    bool attackOn = false;
-    float nextTargetUpdate;
+    private NavMeshAgent agent;
+    private AttackSlot[] targets;
+    private AttackSlot targetAttackSlot;
+    private Vector3 targetPos;
+    private bool attackOn = false;
+    private float nextTargetUpdate;
 
-    void Awake()
+    private void Awake()
     {
         LoadNextTarget();
         agent = GetComponent<NavMeshAgent>();
 
-        agent.stoppingDistance = stoppingDistance;        
+        agent.stoppingDistance = stoppingDistance;
     }
 
-    void Update()
+    private void Update()
     {
         RotateToTarget();
         if (nextTargetUpdate + setNewTargetDelay > Time.time)
             return;
         SetNextTargetUpdate();
-        agent.SetDestination(AttackPosition());        
+        agent.SetDestination(AttackPosition());
     }
 
     private void RotateToTarget()
@@ -57,7 +59,7 @@ public class AttackTowers : Element
     {
         CleanTarget();
         if (targets == null)
-            targets = app.GetAttackSlots();        
+            targets = app.GetAttackSlots();
         try
         {
             AttackSlot[] freeSlots = targets.Where(t => t.free == true).ToArray();
@@ -87,7 +89,7 @@ public class AttackTowers : Element
     }
 
     private Vector3 AttackPosition()
-    {      
+    {
         try
         {
             return targetAttackSlot.transform.position;
@@ -96,9 +98,8 @@ public class AttackTowers : Element
         {
             Debug.LogError("target is missing");
             throw;
-        }        
+        }
     }
-
 
     private void OnTriggerEnter(Collider other)
     {

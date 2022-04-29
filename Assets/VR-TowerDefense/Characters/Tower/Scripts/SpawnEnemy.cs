@@ -20,7 +20,6 @@ public class SpawnEnemy : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject foo = Instantiate(enemyPrefab, transform);
-        foo.name += "_" + count--;
+        Instantiate(enemyPrefab, transform);
     }
 }

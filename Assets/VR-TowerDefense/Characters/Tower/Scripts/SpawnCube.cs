@@ -36,6 +36,8 @@ public class SpawnCube : Element
 
     private void CoupleEvents()
     {
+        if (EventManager.current == null)
+            return;
         EventManager.current.SpawnNewCube += SpawnNewCube;
     }
 
