@@ -6,16 +6,16 @@ public class Bullet : MonoBehaviour
     public float speed = 0.1f;
     public float lifetime = 2f;
 
-    float start;  
-    float lastPos;
-    
-    Vector3 targetPos;
-    Vector3 startPos;
+    private float start;
+    private float lastPos;
+
+    private Vector3 targetPos;
+    private Vector3 startPos;
 
     private void Awake()
     {
         start = Time.time;
-        startPos = transform.position;        
+        startPos = transform.position;
     }
 
     private void FixedUpdate()
@@ -29,8 +29,8 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        Vector3 moveDir = (targetPos - startPos).normalized;
-        moveDir.y = startPos.y;
+        targetPos.y = startPos.y;
+        Vector3 moveDir = targetPos - startPos;
         transform.position += moveDir * speed;
     }
 
